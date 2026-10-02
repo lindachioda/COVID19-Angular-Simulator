@@ -1,0 +1,93 @@
+div.cont {
+    color:lightgrey;
+    margin-top: 10px;
+    margin-bottom:10px;
+    padding:12px;
+
+}
+div.bg {
+    background-color: #343a40!important;
+    padding:10px;
+}
+.totalePositivi {
+    text-align: center;
+    color: rgb(255, 170, 0);
+    stroke-width: 2;
+    font-size: 60px;
+    line-height: normal;
+}
+.guariti {
+    text-align: center;
+    color: green;
+    stroke-width: 2;
+    font-size: 60px;
+    line-height: normal;
+}
+.deceduti {
+    text-align: center;
+    color: lightgrey;
+    stroke-width: 2;
+    font-size: 60px;
+    line-height: normal;
+}
+.totaleCasi{
+    text-align: center;
+    color: red;
+    stroke-width: 2;
+    font-size: 60px;
+    line-height: normal;
+}
+.tamponi{
+    text-align: center;
+    color: dodgerblue;
+    stroke-width: 2;
+    font-size: 60px;
+    line-height: normal;
+}
+div.sub {
+    background-color: #111;
+    padding:10px;
+    margin-bottom: 12px;
+    text-align: center;
+}
+div.sub > span {
+    font-size: 40px
+}
+p.subtitolo {
+    font-size: 14px;
+    margin-bottom: 2px;
+}
+
+/* table*/
+thead>tr>th {
+    color:lightgrey;
+   font-size: 0.95em;
+}
+
+div.fisso {
+    max-height: 290px;
+    overflow:scroll; /* Hide horizontal scrollbar */
+    overflow-x: hidden ;
+    margin-bottom: 20px;
+}
+/* width */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px grey;
+    border-radius: 10px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: rgb(255, 170, 0);
+    border-radius: 10px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #b30000;
+}

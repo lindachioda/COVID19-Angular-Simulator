@@ -1,0 +1,160 @@
+
+<div class="container-fluid">
+            <div class="row">
+                <div class="col-md-3 cont"><!--inserisci colonne in contenitori!-->
+                    <div class="col-md-12 bg">
+                        <p>Attuali positivi</p>
+                        <span *ngFor="let dato of dati; last as last;">
+                      <div class="totalePositivi" *ngIf="last"> {{dato.totale_positivi}}</div>
+                       </span>
+                        <div class="sub">
+                            <p class="subtitolo">Incremento</p>
+                            <span class="totalePositivi" *ngFor="let dato of dati;last as last; index as i">
+                            <!--l'ultimo dato dell'array da sottrarrre al penultimo per conoscere l'indice dell'incremento di casi-->
+                            <div *ngIf="last"> {{dato.totale_positivi - dati[i - 1].totale_positivi}}
+                            <!--differenza di incremento fra ieri e oggi (sottraggo al totale di oggi i dati di ieri, )-->
+                                    <span style="font-size: 0.5em; color: lightgray"> + ({{dato.totale_positivi - dati[i - 1].totale_positivi - (dati[i - 1].totale_positivi - dati[i - 2].totale_positivi)}})</span>
+                            </div>
+                            </span>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="col-md-3 cont">
+                    <div class="col-md-12 bg">
+                        <p>Dimessi guariti</p>
+                        <span *ngFor="let dato of dati; last as last;">
+                      <div class="guariti" *ngIf="last"> {{dato.dimessi_guariti}}</div>
+                      
+                  </span>
+                        <div class="sub">
+                            <p class="subtitolo">Incremento</p>
+                            <span class="guariti" *ngFor="let dato of dati;last as last; index as i">
+                            <div *ngIf="last">
+                                    {{dato.dimessi_guariti - dati[i - 1].dimessi_guariti}}
+                                <span style="font-size: 0.5em;color: lightgray"> + ({{dato.dimessi_guariti - dati[i - 1].dimessi_guariti - (dati[i - 1].dimessi_guariti - dati[i - 2].dimessi_guariti)}}
+                                        )
+                                    </span>
+                            </div>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 cont">
+                    <div class="col-md-12 bg">
+                        <p>Deceduti</p>
+                        <span *ngFor="let dato of dati;last as last;">
+                      <div class="deceduti" *ngIf="last">
+                          {{dato.deceduti}}
+                      </div>
+                      
+                  </span>
+                        <div class="sub">
+                            <p class="subtitolo">Incremento</p>
+                            <span class="deceduti" *ngFor="let dato of dati;last as last; index as i">
+                                <div *ngIf="last">
+                                    {{dato.deceduti - dati[i - 1].deceduti}}
+                                    <span style="font-size: 0.5em;color: lightgray">
+                                        + ({{dato.deceduti - dati[i - 1].deceduti - (dati[i - 1].deceduti - dati[i - 2].deceduti)}}
+                                        )
+                                    </span>
+                                </div>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 cont">
+                    <div class="col-md-12 bg">
+                        <p>Totale casi</p>
+                        <span *ngFor="let dato of dati;last as last;">
+                      <div class="totaleCasi" *ngIf="last">
+                          {{dato.totale_casi}}
+                      </div>
+                      
+                  </span>
+                        <div class="sub">
+                            <p class="subtitolo">Incremento</p>
+                            <span class="totaleCasi" *ngFor="let dato of dati;last as last; index as i">
+                                <div *ngIf="last">
+                                    {{dato.totale_casi - dati[i - 1].totale_casi}}
+                                    <span style="font-size: 0.5em;color: lightgray">
+                                        + ({{dato.totale_casi - dati[i - 1].totale_casi - (dati[i - 1].totale_casi - dati[i - 2].totale_casi)}}
+                                        )
+                                    </span>
+                                </div>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid">
+            <div class="row">
+                <!--tabella casi regioni-->
+                <div class="col-md-5">
+                    <div class="col-md-12 fisso">
+                        <table class="table table-dark table-cont">
+                            <thead>
+                            <tr>
+                                <th>Regione</th>
+                                <th>Casi totali</th>
+                                <th>Casi attuali</th>
+                                <th>Incremento</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr *ngFor="let reg of regioni | sort:'desc':'totale_casi' ">
+                                <td><a [routerLink]="['/regione', reg.denominazione_regione]">{{reg.denominazione_regione}}</a></td>
+                                <td style="color: red">{{reg.totale_casi}}</td>
+                                <td style="color:rgb(255,170,0)">{{reg.totale_positivi}}</td>
+                                <td style="color: lightgray">{{reg.nuovi_positivi}}</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <!--tabella casi provincia-->
+                <div class="col-md-4">
+                    <div class="col-md-12 fisso">
+                        <table class="table table-dark">
+                            <thead>
+                            <tr>
+                                <th>Provincia</th>
+                                <th>Casi totali</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr *ngFor="let prov of province | sort: 'desc':'totale_casi'">
+                                <td>{{prov.denominazione_provincia}}</td>
+                                <td style="color: red">{{prov.totale_casi}}</td>
+
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!--calcolo tamponi effettuati-->
+                <div class="col-md-3 cont" style="margin-top: -10px">
+                    <div class="col-md-12 bg">
+                        <p style="margin-top: -42px">Tamponi effettuati:
+                            <span class="tamponi" *ngFor="let dato of dati; index as i;last as last">
+                                <div *ngIf="last">
+                                    <span style="color:lightgray; font-size: 1em">
+                                        {{dato.tamponi - dati[i - 1].tamponi}}
+                                    </span>
+                                </div>
+                            </span>
+                        </p>
+                        <div class="sub">
+                            <p class="subtitolo">Incidenza dei positivi rispetto ai tamponi effettuati</p>
+                            <span *ngFor="let dato of dati; index as i; last as last;">
+                                <div *ngIf="last">
+                                    {{(dato.nuovi_positivi / (dato.tamponi - dati[i - 1].tamponi)) * 100 | number:'1.1'}} %
+                                </div>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
