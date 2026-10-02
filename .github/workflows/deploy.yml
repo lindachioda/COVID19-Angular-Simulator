@@ -28,7 +28,7 @@ jobs:
         run: npm ci
 
       - name: Build Angular
-        run: npm run build -- --base-href /COVID-19-Angular-Simulator/
+        run: npm run build -- --base-href /COVID19-Angular-Simulator/
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
